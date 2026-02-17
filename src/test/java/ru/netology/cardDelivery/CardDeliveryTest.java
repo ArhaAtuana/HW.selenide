@@ -31,10 +31,10 @@ public class CardDeliveryTest {
         String planningDate = generateDate(4,"dd.MM.yyyy");
 
         SelenideElement form = $("form");
-        form.$(By.cssSelector("[data-test-id=city] .input__control")).setValue("Вологда");
+        form.$(By.cssSelector("[data-test-id=city] .input__control")).setValue("Москва");
         form.$(By.cssSelector("[data-test-id=date] input")).press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         //String date = LocalDate.now().plusDays(4).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $("[data-test-id=date] input").setValue(planningDate);
+        form.$("[data-test-id=date] input").setValue(planningDate);
         form.$(By.cssSelector("[data-test-id=name] .input__control")).setValue("Анна Асафьева");
         form.$(By.cssSelector("[data-test-id=phone] .input__control")).setValue("+79998887766");
         form.$(By.cssSelector("[data-test-id=agreement]")).click();
