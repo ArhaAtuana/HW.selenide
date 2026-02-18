@@ -31,16 +31,16 @@ public class CardDeliveryTest {
         String planningDate = generateDate(4,"dd.MM.yyyy");
 
         SelenideElement form = $("form");
-        form.$(By.cssSelector("[data-test-id=city] .input__control")).setValue("Москва");
-        form.$(By.cssSelector("[data-test-id=date] input")).press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
+        form.$("[data-test-id=city] .input__control").setValue("Москва");
+        form.$("[data-test-id=date] input").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         //String date = LocalDate.now().plusDays(4).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         form.$("[data-test-id=date] input").setValue(planningDate);
-        form.$(By.cssSelector("[data-test-id=name] .input__control")).setValue("Анна Асафьева");
-        form.$(By.cssSelector("[data-test-id=phone] .input__control")).setValue("+79998887766");
-        form.$(By.cssSelector("[data-test-id=agreement]")).click();
+        form.$("[data-test-id=name] .input__control").setValue("Анна Асафьева");
+        form.$("[data-test-id=phone] .input__control").setValue("+79998887766");
+        form.$("[data-test-id=agreement]").click();
         $$("button").find(Condition.text ("Забронировать")).click();
 
-        $(Selectors.withText("Встреча успешно забронирована")).should(Condition.visible, Duration.ofSeconds(15));
+        $(Selectors.withText("Встреча успешно забронирована на")).should(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.text(planningDate));
 
     }
 }
