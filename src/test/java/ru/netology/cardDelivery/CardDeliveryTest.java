@@ -40,7 +40,9 @@ public class CardDeliveryTest {
         form.$("[data-test-id=agreement]").click();
         $$("button").find(Condition.text ("Забронировать")).click();
 
-        $(Selectors.withText("Встреча успешно забронирована на")).should(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.text(planningDate));
+        $("[data-test-id=notification]").should(Condition.visible, Duration.ofSeconds(15))
+                .shouldHave(Condition.text(planningDate))
+                .shouldHave(Condition.text("Встреча успешно забронирована"));
 
     }
 }
