@@ -33,7 +33,6 @@ public class CardDeliveryTest {
         SelenideElement form = $("form");
         form.$("[data-test-id=city] .input__control").setValue("Москва");
         form.$("[data-test-id=date] input").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        //String date = LocalDate.now().plusDays(4).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         form.$("[data-test-id=date] input").setValue(planningDate);
         form.$("[data-test-id=name] .input__control").setValue("Анна Асафьева");
         form.$("[data-test-id=phone] .input__control").setValue("+79998887766");
@@ -41,8 +40,6 @@ public class CardDeliveryTest {
         $$("button").find(Condition.text ("Забронировать")).click();
 
         $("[data-test-id=notification]").should(Condition.visible, Duration.ofSeconds(15))
-                .shouldHave(Condition.text(planningDate))
-                .shouldHave(Condition.text("Встреча успешно забронирована"));
-
+                .shouldHave(Condition.text("Встреча успешно забронирована на " + planningDate));
     }
 }
